@@ -10,10 +10,10 @@ Controller::Controller()
 
 void Controller::createNewGame(){
 
-    int n_case_x;
-    int n_case_y;
+    int n_case_x = 0;
+    int n_case_y = 0;
 
-    std::cout << "Choisissez la taille de la grille :" << std::endl;
+    std::cout << "Choisissez la taille de la grille : << " << std::endl;
     std::cout << "1) 100*100" << std::endl;
     std::cout << "2) 200*200" << std::endl;
     std::cout << "3) 300*300" << std::endl;

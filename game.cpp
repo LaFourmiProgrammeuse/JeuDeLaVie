@@ -338,26 +338,36 @@ int Game::countNeighbourMarquedCase(int case_x, int case_y){
     if((*tile_map)(case_x+1, case_y).type_case == 1){
         n_marqued_case++;
     }
-    if((*tile_map)(case_x-1, case_y).type_case == 1){
-        n_marqued_case++;
+    if(case_x > 0){
+        if((*tile_map)(case_x-1, case_y).type_case == 1){
+            n_marqued_case++;
+        }
     }
     if((*tile_map)(case_x+1, case_y+1).type_case == 1){
         n_marqued_case++;
     }
-    if((*tile_map)(case_x-1, case_y-1).type_case == 1){
-        n_marqued_case++;
+    if(case_x > 0 && case_y > 0){
+        if((*tile_map)(case_x-1, case_y-1).type_case == 1){
+            n_marqued_case++;
+        }
     }
-    if((*tile_map)(case_x+1, case_y-1).type_case == 1){
-        n_marqued_case++;
+    if(case_y > 0){
+        if((*tile_map)(case_x+1, case_y-1).type_case == 1){
+         n_marqued_case++;
+        }
     }
-    if((*tile_map)(case_x-1, case_y+1).type_case == 1){
-        n_marqued_case++;
+    if(case_x > 0){
+        if((*tile_map)(case_x-1, case_y+1).type_case == 1){
+            n_marqued_case++;
+        }
     }
     if((*tile_map)(case_x, case_y+1).type_case == 1){
         n_marqued_case++;
     }
-    if((*tile_map)(case_x, case_y-1).type_case == 1){
-        n_marqued_case++;
+    if(case_y > 0){
+        if((*tile_map)(case_x, case_y-1).type_case == 1){
+            n_marqued_case++;
+     }
     }
 
     return n_marqued_case;
