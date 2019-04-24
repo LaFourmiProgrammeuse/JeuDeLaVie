@@ -1,0 +1,12 @@
+#ifndef LIB_GAMEDEV_GLOBAL_H
+#define LIB_GAMEDEV_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(LIB_GAMEDEV_LIBRARY)
+#  define LIB_GAMEDEVSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define LIB_GAMEDEVSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // LIB_GAMEDEV_GLOBAL_H
