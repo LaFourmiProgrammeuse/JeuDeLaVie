@@ -75,7 +75,7 @@ Game::Game(Interface *interface, int n_case_x, int n_case_y)
     }
 
     bw_game_loop = new Button_Widget;
-    bw_game_loop->LoadFont("DIMITRI_.TTF");
+    //bw_game_loop->LoadFont("Bebas.otf");
     bw_game_loop->setString("0");
     bw_game_loop->setTextColor(sf::Color::Black);
     bw_game_loop->setPosition(sf::Vector2f(15, 15));
@@ -213,6 +213,8 @@ void Game::Event(sf::Event event, sf::RenderWindow *window){
             if(states == Placement){
                 states = In_Process;
 
+                qDebug() << "Game started";
+
                 //On lance la boucle de jeu
                 this->start(QThread::NormalPriority);
             }
@@ -229,12 +231,16 @@ void Game::Event(sf::Event event, sf::RenderWindow *window){
             if(game_speed-1 > 0){
                 game_speed -= 1;
             }
+
+            qDebug() << "Game speed setted to" << game_speed;
         }
         else if(event.key.code == sf::Keyboard::P){
 
             if(game_speed+1 < 3){
                 game_speed += 1;
             }
+
+            qDebug() << "Game speed setted to" << game_speed;
         }
 
         if(event.key.code == sf::Keyboard::Enter){
@@ -298,7 +304,6 @@ void Game::run(){
         game_loop++;
         bw_game_loop->setString(QString::number(game_loop).toStdString());
 
-
         interface->Draw();
 
         if(game_speed == 0){
@@ -333,42 +338,52 @@ void Game::UpdateCameraCases(){
 
 int Game::countNeighbourMarquedCase(int case_x, int case_y){
 
+    //qDebug() << "---" << case_x << case_y << n_case_x << n_case_y;
+
     int n_marqued_case = 0;
 
-    if((*tile_map)(case_x+1, case_y).type_case == 1){
-        n_marqued_case++;
+    if(case_x < n_case_x-1){
+        if((*tile_map)(case_x+1, case_y).type_case == 1){
+            n_marqued_case++;
+        }
     }
     if(case_x > 0){
         if((*tile_map)(case_x-1, case_y).type_case == 1){
             n_marqued_case++;
         }
     }
-    if((*tile_map)(case_x+1, case_y+1).type_case == 1){
-        n_marqued_case++;
+    if(case_x < n_case_x-1 && case_y < n_case_y-1){
+        if((*tile_map)(case_x+1, case_y+1).type_case == 1){
+            n_marqued_case++;
+        }
     }
     if(case_x > 0 && case_y > 0){
         if((*tile_map)(case_x-1, case_y-1).type_case == 1){
             n_marqued_case++;
         }
     }
-    if(case_y > 0){
+    if(case_x < n_case_x-1 && case_y > 0){
         if((*tile_map)(case_x+1, case_y-1).type_case == 1){
          n_marqued_case++;
         }
     }
-    if(case_x > 0){
+    if(case_x > 0 && case_y < n_case_y-1){
         if((*tile_map)(case_x-1, case_y+1).type_case == 1){
             n_marqued_case++;
         }
     }
-    if((*tile_map)(case_x, case_y+1).type_case == 1){
-        n_marqued_case++;
+    if(case_y < n_case_y-1){
+        if((*tile_map)(case_x, case_y+1).type_case == 1){
+            n_marqued_case++;
+        }
     }
     if(case_y > 0){
         if((*tile_map)(case_x, case_y-1).type_case == 1){
             n_marqued_case++;
      }
     }
+
+    //qDebug() << "4";
 
     return n_marqued_case;
 }
@@ -408,6 +423,8 @@ void Game::newCaseGeneration(){
 
 void Game::ResetGame(){
 
+    qDebug() << "Game resetted";
+
     game_thread_run = false;
 
     //On re-set-up la tile_map
@@ -422,7 +439,7 @@ void Game::ResetGame(){
             case_render.setFillColor(sf::Color::White);
             case_render.setOutlineColor(sf::Color::Black);
             case_render.setOutlineThickness(1);
-            case_render.setSize(sf::Vector2f(list_zoom_level[DEFAULT_ZOOM].case_size, list_zoom_level[DEFAULT_ZOOM].case_size)); //On commence avec le zoom 1
+            case_render.setSize(sf::Vector2f(list_zoom_level[DEFAULT_ZOOM].case_size, list_zoom_level[DEFAULT_ZOOM].case_size));
 
             _case.case_render = case_render;
 

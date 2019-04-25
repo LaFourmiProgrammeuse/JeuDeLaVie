@@ -11,9 +11,9 @@ template<class T>
 class LIB_GAMEDEVSHARED_EXPORT Matrix
 {
 public:
-    Matrix(unsigned int width, unsigned int height, T const& t = T{}) : width(width), height(height), datas(width*height, t){}
+    Matrix(int width, int height, T const& t = T{}) : width(width), height(height), datas(width*height, t){}
 
-    T& operator()(unsigned x, unsigned y){
+    T& operator()(int x,int y){
         return datas[width*y+x];
     }
 
@@ -22,16 +22,16 @@ public:
 //        height = data.getHeight();
 //    }
 
-    unsigned int getWidth(){
+    int getWidth(){
         return width;
     }
-    unsigned int getHeight(){
+    int getHeight(){
         return height;
     }
 
 private:
-    unsigned int width;
-    unsigned int height;
+    int width;
+    int height;
 
     std::vector<T> datas;
 };

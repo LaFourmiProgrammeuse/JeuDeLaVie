@@ -10,7 +10,7 @@ int main(int argc, char **argv){
     //XInitThreads();
 
     QCoreApplication app(argc, argv);
-    std::cout << app.applicationFilePath().toStdString();
+    std::cout << "Working directory :" << app.applicationFilePath().toStdString() << std::endl;
 
     Controller controller;
     controller.createNewGame();
