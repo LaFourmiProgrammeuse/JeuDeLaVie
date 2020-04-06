@@ -28,7 +28,7 @@ struct Case{
     int type_case;
 };
 
-class Game  : public QThread
+class Game : public QThread
 {
 public:
     Game(Interface *interface, int n_case_x, int n_case_y);
