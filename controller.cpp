@@ -10,8 +10,8 @@ Controller::Controller()
 
 void Controller::createNewGame(){
 
-    int n_case_x;
-    int n_case_y;
+    int n_case_x = 0;
+    int n_case_y = 0;
 
     std::cout << "Choisissez la taille de la grille :" << std::endl;
     std::cout << "1) 100*100" << std::endl;
@@ -20,7 +20,7 @@ void Controller::createNewGame(){
 
     std::string answer;
 
-    std::cin >> answer;
+    /*std::cin >> answer;*/ answer="1";
     if(answer == "1"){
         n_case_x = 100;
         n_case_y = 100;
@@ -35,7 +35,6 @@ void Controller::createNewGame(){
     }
 
     //Si il y avait un ancien jeu lancé on le détruit
-
 
     game = new Game(interface, n_case_x, n_case_y);
     interface->showWindow();

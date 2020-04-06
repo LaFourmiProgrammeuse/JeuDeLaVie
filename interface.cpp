@@ -13,10 +13,11 @@ void Interface::Draw(){
 
 }
 
-void Interface::showWindow(){
+void Interface::showWindow(){ qDebug() << "d";
 
     if(window == nullptr){
         window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Le jeu de la vie");
+        window->setVisible(true);
     }
 }
 
